@@ -1,16 +1,22 @@
 @baseUrl=http://localhost:1337
 
+### Send pending form request
+POST {{baseUrl}}/api/pending-forms
+Content-Type: application/json
+
+{
+  "data": {
+    "email": "john@gmail.com"
+ }
+}
+
 ### Send form data
+
 POST {{baseUrl}}/api/forms
 Content-Type: application/json
 
 {
   "data": {
-    "name": "john",
-    "email": "john@gmail.com"
- }
+    "token": "bba7429a70de4a060c1bb8abf3507354e7ba72436f84f223a715a0603c8f5e84"
+  }
 }
-
-### Test
-
-GET {{baseUrl}}/auth/local

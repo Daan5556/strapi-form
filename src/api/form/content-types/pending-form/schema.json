@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pending_forms",
+  "info": {
+    "singularName": "pending-form",
+    "pluralName": "pending-forms",
+    "displayName": "Pending Form"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "email": {
+      "type": "email"
+    },
+    "token": {
+      "type": "uid"
+    },
+    "expiresAt": {
+      "type": "datetime"
+    }
+  },
+  "config": {
+    "visible": false
+  }
+}
