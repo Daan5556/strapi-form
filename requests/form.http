@@ -1,10 +1,16 @@
 @baseUrl=http://localhost:1337
 
 ### Send form data
-GET {{baseUrl}}/api/forms
+POST {{baseUrl}}/api/forms
+Content-Type: application/json
 
-name=john&email=john@gmail.com
+{
+  "data": {
+    "name": "john",
+    "email": "john@gmail.com"
+ }
+}
 
 ### Test
 
-GET http://localhost:1337/admin
+GET {{baseUrl}}/auth/local

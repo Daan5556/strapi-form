@@ -4,17 +4,20 @@
   "info": {
     "singularName": "form",
     "pluralName": "forms",
-    "displayName": "form"
+    "displayName": "form",
+    "description": ""
   },
   "options": {
-    "comment": ""
+    "draftAndPublish": false
   },
   "attributes": {
     "name": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "email": {
-      "type": "email"
+      "type": "email",
+      "required": true
     }
   }
 }
