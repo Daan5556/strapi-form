@@ -1,7 +1,7 @@
 @baseUrl=http://localhost:1337
 
 ### Send form data
-GET {{baseUrl}}/api/form
+GET {{baseUrl}}/api/forms
 
 name=john&email=john@gmail.com
 

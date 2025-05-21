@@ -37,5 +37,6 @@
   "strapi": {
     "uuid": "ad14300f-1b80-4443-a1f4-9c7de0bebb66",
     "installId": "f98ca81d7ab535d203a1cd3de4042c5c9225a6eed4eab5634fa2e897a5bde3aa"
-  }
+  },
+  "license": "MIT"
 }
