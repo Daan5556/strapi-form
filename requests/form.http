@@ -1,0 +1,10 @@
+@baseUrl=http://localhost:1337
+
+### Send form data
+GET {{baseUrl}}/api/form
+
+name=john&email=john@gmail.com
+
+### Test
+
+GET http://localhost:1337/admin
