@@ -2,8 +2,6 @@
  * A set of functions called "actions" for `form-controller`
  */
 
-import crypto from "crypto";
-
 export default {
   async create(ctx, next) {
     const { data } = ctx.request.body;
@@ -15,7 +13,9 @@ export default {
 
     const reCaptchaToken = data.gRecaptchaToken;
 
-    if (verifyRecaptcha(reCaptchaToken)) {
+    if (
+      strapi.service("api::form.re-captcha").validate({ token: reCaptchaToken })
+    ) {
       strapi.documents("api::form.form").create({
         data: { data: formData },
       });
@@ -24,19 +24,9 @@ export default {
       return { ok: true, confirmed: true, data: formData };
     }
 
-    const token = crypto.randomBytes(32).toString("hex");
+    await strapi.service("api::form.form").createPendingForm({ formData });
 
-    await strapi.documents("api::form.pending-form").create({
-      data: {
-        token: token,
-        data: formData,
-        expiresAt: new Date(Date.now() + 1000 * 60 * 60), // + 1 hour
-      },
-    });
-
-    strapi.log.info(
-      `Sending mail to ${data.email} content: Click to confirm: <a href=\"http://frontend.net/aanvragen/confirm?token=${token}\"`
-    );
+    strapi.service("api::email.email").send({ to: formData.email });
 
     return { ok: true, confirmed: false, data: formData };
   },
@@ -83,8 +73,4 @@ export default {
 
     return { ok: true, data: confirmedForm.data };
   },
-};
-
-const verifyRecaptcha = (token: string) => {
-  return token === "1234";
 };

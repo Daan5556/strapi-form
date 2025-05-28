@@ -6,9 +6,9 @@ Content-Type: application/json
 
 {
   "data": {
-    "name": "john",
+    "name": "john0235",
     "email": "john@gmail.com",
-    "gRecaptchaToken": "8888"
+    "gRecaptchaToken": "1dddd2345"
  }
 }
 
@@ -19,6 +19,6 @@ Content-Type: application/json
 
 {
   "data": {
-    "token": "9784e55fd0979c9f32e9fdedbccba7cd7f716cdff8b1bf5a3fc2ed431a97e5a1"
+    "token": "caa14fc9dfcde2b3ae24130add030281d01e5b8d973d76b3608af6e67a959db9"
   }
 }

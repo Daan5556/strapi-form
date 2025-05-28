@@ -1,7 +1,18 @@
 /**
  * form service
  */
+import crypto from "crypto";
 
-import { factories } from '@strapi/strapi';
+export default {
+  async createPendingForm({ formData }) {
+    const token = crypto.randomBytes(32).toString("hex");
 
-export default factories.createCoreService('api::form.form');
+    await strapi.documents("api::form.pending-form").create({
+      data: {
+        token: token,
+        data: formData,
+        expiresAt: new Date(Date.now() + 1000 * 60 * 60), // + 1 hour
+      },
+    });
+  },
+};
