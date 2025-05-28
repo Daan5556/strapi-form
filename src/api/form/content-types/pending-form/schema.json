@@ -4,23 +4,29 @@
   "info": {
     "singularName": "pending-form",
     "pluralName": "pending-forms",
-    "displayName": "Pending Form"
+    "displayName": "Pending Form",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
   },
   "attributes": {
-    "email": {
-      "type": "email"
-    },
     "token": {
-      "type": "uid"
+      "type": "string"
     },
-    "expiresAt": {
-      "type": "datetime"
+    "data": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.request-form"
     }
   },
-  "config": {
-    "visible": false
+  "pluginOptions": {
+    "content-manager": {
+      "visible": false
+    },
+
+    "content-type-builder": {
+      "visible": false
+    }
   }
 }

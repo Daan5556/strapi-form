@@ -1,12 +1,14 @@
 @baseUrl=http://localhost:1337
 
-### Send pending form request
-POST {{baseUrl}}/api/pending-forms
+### Send form request
+POST {{baseUrl}}/api/forms
 Content-Type: application/json
 
 {
   "data": {
-    "email": "john@gmail.com"
+    "name": "john",
+    "email": "john@gmail.com",
+    "gRecaptchaToken": "12345"
  }
 }
 

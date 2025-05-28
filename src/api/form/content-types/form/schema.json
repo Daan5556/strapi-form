@@ -11,13 +11,10 @@
     "draftAndPublish": false
   },
   "attributes": {
-    "name": {
-      "type": "string",
-      "required": true
-    },
-    "email": {
-      "type": "email",
-      "required": true
+    "data": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.request-form"
     }
   }
 }
