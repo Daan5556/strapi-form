@@ -11,6 +11,7 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "strapi": "strapi",
+    "maildev": "maildev",
     "upgrade": "npx @strapi/upgrade latest",
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
@@ -31,6 +32,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "maildev": "^2.2.1",
     "typescript": "^5"
   },
   "engines": {

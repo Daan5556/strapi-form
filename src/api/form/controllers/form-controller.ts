@@ -32,7 +32,11 @@ export default {
       });
 
       ctx.status = 201;
-      return { ok: true, confirmed: true, data: validateResult.data };
+      return {
+        ok: true,
+        confirmed: true,
+        data: { ...validateResult.data, gRecaptchaToken: undefined },
+      };
     }
 
     const pendingForm = await strapi
@@ -44,13 +48,26 @@ export default {
       content: `<a href=\"frontend.net/aanvragen/confirm?token=${pendingForm.token}\">Click to confirm</a>`,
     });
 
-    return { ok: true, confirmed: false, data: validateResult.data };
+    return {
+      ok: true,
+      confirmed: false,
+      data: { ...validateResult.data, gRecaptchaToken: undefined },
+    };
   },
 
   async confirm(ctx, next) {
-    const { data } = ctx.request.body;
+    const { body } = ctx.request;
 
-    const token = data.token;
+    const validateResult: z.ZodSafeParseResult<{
+      token: string;
+    }> = strapi.service("api::form.validate").confirmRequest({ body });
+
+    if (!validateResult.success) {
+      ctx.status = 400;
+      return { ok: false, error: validateResult.error };
+    }
+
+    const { token } = validateResult.data;
 
     const pendingForm = await strapi
       .documents("api::form.pending-form")
@@ -68,7 +85,7 @@ export default {
         `Pending form request has form token that is not found in the database. Token: ${token}`
       );
       ctx.status = 400;
-      return { message: "Pending form is not found" };
+      return { ok: false, message: "Pending form is not found" };
     }
 
     const [confirmedForm, deletedPendingForm] = await Promise.all([

@@ -16,7 +16,5 @@ POST {{baseUrl}}/api/forms-confirm
 Content-Type: application/json
 
 {
-  "data": {
-    "token": "caa14fc9dfcde2b3ae24130add030281d01e5b8d973d76b3608af6e67a959db9"
-  }
+  "token": "0952f0d94faa46e7a710008f47f19810a1eb127c13bb291c983e3e4962e965ff"
 }
