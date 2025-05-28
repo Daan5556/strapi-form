@@ -3,7 +3,7 @@
  */
 
 export default () => ({
-  async send({ to }) {
-    strapi.log.info(`Sending mail to: ${to}`);
+  async send({ to, content }) {
+    strapi.log.info(`Sending mail to: ${to}. Content: ${content}`);
   },
 });

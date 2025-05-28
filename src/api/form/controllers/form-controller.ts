@@ -2,33 +2,49 @@
  * A set of functions called "actions" for `form-controller`
  */
 
+import z from "zod/v4";
+
 export default {
   async create(ctx, next) {
-    const { data } = ctx.request.body;
+    const body = ctx.request.body;
 
-    const formData: { name: string; email: string } = {
-      name: data.name,
-      email: data.email,
-    };
+    const validateResult: z.ZodSafeParseResult<{
+      name: string;
+      email: string;
+      gRecaptchaToken: string;
+    }> = strapi.service("api::form.validate").formSubmitRequest({ body });
 
-    const reCaptchaToken = data.gRecaptchaToken;
+    if (!validateResult.success) {
+      ctx.status = 400;
+      return { ok: false, error: validateResult.error };
+    }
 
-    if (
-      strapi.service("api::form.re-captcha").validate({ token: reCaptchaToken })
-    ) {
+    const { data } = validateResult;
+
+    const { gRecaptchaToken } = data;
+    const reCaptchaResult: boolean = await strapi
+      .service("api::form.re-captcha")
+      .validate({ token: gRecaptchaToken });
+
+    if (reCaptchaResult) {
       strapi.documents("api::form.form").create({
-        data: { data: formData },
+        data: { data },
       });
 
       ctx.status = 201;
-      return { ok: true, confirmed: true, data: formData };
+      return { ok: true, confirmed: true, data: validateResult.data };
     }
 
-    await strapi.service("api::form.form").createPendingForm({ formData });
+    const pendingForm = await strapi
+      .service("api::form.form")
+      .createPendingForm({ formData: validateResult.data });
 
-    strapi.service("api::email.email").send({ to: formData.email });
+    strapi.service("api::email.email").send({
+      to: validateResult.data.email,
+      content: `<a href=\"frontend.net/aanvragen/confirm?token=${pendingForm.token}\">Click to confirm</a>`,
+    });
 
-    return { ok: true, confirmed: false, data: formData };
+    return { ok: true, confirmed: false, data: validateResult.data };
   },
 
   async confirm(ctx, next) {

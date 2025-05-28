@@ -5,11 +5,9 @@ POST {{baseUrl}}/api/forms
 Content-Type: application/json
 
 {
-  "data": {
-    "name": "john0235",
-    "email": "john@gmail.com",
-    "gRecaptchaToken": "1dddd2345"
- }
+  "name": "john0235", 
+  "email": "john@gmail.com",
+  "gRecaptchaToken": "12345"
 }
 
 ### Send form data

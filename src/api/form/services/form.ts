@@ -14,5 +14,6 @@ export default {
         expiresAt: new Date(Date.now() + 1000 * 60 * 60), // + 1 hour
       },
     });
+    return { token };
   },
 };
