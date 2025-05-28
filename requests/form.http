@@ -8,17 +8,17 @@ Content-Type: application/json
   "data": {
     "name": "john",
     "email": "john@gmail.com",
-    "gRecaptchaToken": "12345"
+    "gRecaptchaToken": "8888"
  }
 }
 
 ### Send form data
 
-POST {{baseUrl}}/api/forms
+POST {{baseUrl}}/api/forms-confirm
 Content-Type: application/json
 
 {
   "data": {
-    "token": "bba7429a70de4a060c1bb8abf3507354e7ba72436f84f223a715a0603c8f5e84"
+    "token": "9784e55fd0979c9f32e9fdedbccba7cd7f716cdff8b1bf5a3fc2ed431a97e5a1"
   }
 }

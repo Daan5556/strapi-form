@@ -7,7 +7,7 @@ export interface ComponentsRequestForm extends Struct.ComponentSchema {
   };
   attributes: {
     email: Schema.Attribute.Email;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String;
   };
 }
 
