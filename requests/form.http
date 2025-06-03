@@ -5,7 +5,7 @@ POST {{baseUrl}}/api/forms
 Content-Type: application/json
 
 {
-  "name": "john0235", 
+  "name": "john", 
   "email": "john@gmail.com",
   "gRecaptchaToken": "12345"
 }
@@ -16,5 +16,5 @@ POST {{baseUrl}}/api/forms-confirm
 Content-Type: application/json
 
 {
-  "token": "0952f0d94faa46e7a710008f47f19810a1eb127c13bb291c983e3e4962e965ff"
+  "token": "e43e45ed96805333ec4492f4d54032afde02dff2f38606d7fa0a06a6bb4ad51f"
 }

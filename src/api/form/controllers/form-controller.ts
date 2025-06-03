@@ -104,6 +104,7 @@ export default {
       );
     }
 
+    ctx.status = 201;
     return { ok: true, data: confirmedForm.data };
   },
 };
